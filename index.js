@@ -22,7 +22,7 @@ app.use(cors());
 connectDB();
 
 // Define API routes
-app.use('/api/notes', noteRoutes);
+app.use('/notes', noteRoutes);
 
 // Start server
 const port = process.env.PORT || 3000;
