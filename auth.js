@@ -11,8 +11,8 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 
 // Register
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) {
     res.status(400).json({ message: 'All fields are required' });
     return;
   }
@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
       return;
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
