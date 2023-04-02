@@ -1,6 +1,7 @@
 const Note = require('../models/note');
 
-exports.getAllNotes = async (req, res) => {
+// Get all notes
+const getAllNotes = async (req, res) => {
   try {
     const notes = await Note.find();
     res.status(200).json(notes);
@@ -9,7 +10,8 @@ exports.getAllNotes = async (req, res) => {
   }
 };
 
-exports.getNoteById = async (req, res) => {
+// Get a single note
+const getNoteById = async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
     if (!note) {
@@ -22,7 +24,8 @@ exports.getNoteById = async (req, res) => {
   }
 };
 
-exports.createNote = async (req, res) => {
+// Create a new note
+const createNote = async (req, res) => {
   const { title, content, type } = req.body;
   if (!title || !content || !type) {
     res.status(400).json({ message: 'Title, content and type are required' });
@@ -41,7 +44,8 @@ exports.createNote = async (req, res) => {
   }
 };
 
-exports.updateNote = async (req, res) => {
+// Update a note
+const updateNote = async (req, res) => {
   const { title, content, type } = req.body;
   if (!title || !content || !type) {
     res.status(400).json({ message: 'Title, content and type are required' });
@@ -63,7 +67,8 @@ exports.updateNote = async (req, res) => {
   }
 };
 
-exports.deleteNote = async (req, res) => {
+// Delete a note
+const deleteNote = async (req, res) => {
   try {
     const note = await Note.findByIdAndDelete(req.params.id);
     if (!note) {
@@ -74,4 +79,12 @@ exports.deleteNote = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+module.exports = {
+  getAllNotes,
+  getNoteById,
+  createNote,
+  updateNote,
+  deleteNote,
 };

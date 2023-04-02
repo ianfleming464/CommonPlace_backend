@@ -5,7 +5,7 @@ const connectDB = require('./db');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const noteRoutes = require('./routes/notes');
-// const userRoutes = require('./routes/users');
+const userRoutes = require('./routes/users');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -23,6 +23,7 @@ connectDB();
 
 // Define API routes
 app.use('/notes', noteRoutes);
+app.use('/users', userRoutes);
 
 // Start server
 const port = process.env.PORT || 3000;
