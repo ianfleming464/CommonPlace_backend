@@ -63,3 +63,10 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
+
+// TO DO 06.04
+// 1. Test routes with Postman. Note that you'll be using the real DB and not a local instance
+
+// 2. Figure out whether the enum in the note model needs extra entries - looking at albums, movies, series, books, etc.
+
+// 3. Once all running, write a Medium article about it.
